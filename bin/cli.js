@@ -2,21 +2,22 @@
 
 'use strict';
 
-var fs = require('fs'),
+const fs = require('fs'),
   path = require('path');
 
-var compat = require('appc-compat');
+const compat = require('appc-compat');
+const chalk = require('chalk');
 
-var pkg = require('../package.json'),
+const pkg = require('../package.json'),
   recipes = require('../lib/recipes'),
   setup = require('../lib/setup'),
   utils = require('../lib/utils'),
   kitchen = require('../lib/kitchen');
 
-var args = process.argv.slice(2);
+let args = process.argv.slice(2);
 
 // help
-var cmd = args.shift();
+let cmd = args.shift();
 
 if (cmd === '-h' || cmd === '--help' || cmd === 'help') {
   displayHelp();
@@ -25,10 +26,8 @@ if (cmd === '-h' || cmd === '--help' || cmd === 'help') {
 // version
 else if (cmd === '-v' || cmd === '--version' || cmd === 'version') {
   console.log(pkg.version);
-
 } else {
-
-  var target;
+  let target;
 
   // project
   if (cmd === 'project') {
@@ -99,49 +98,54 @@ else if (cmd === '-v' || cmd === '--version' || cmd === 'version') {
 
   // unknown
   else {
-
     // deprecated
     if (cmd !== 'run' && cmd !== 'build' && cmd !== 'r' && cmd !== 'b') {
       args.unshift(cmd);
-
     } else {
-      console.warn('DEPRECATED: '.red.bold + ' Use ' + 'tn'.yellow + ' instead of ' + ('tn ' + cmd).yellow + '\n');
+      console.warn(
+        chalk.red.bold('DEPRECATED: ') +
+          ' Use ' +
+          chalk.yellow('tn') +
+          ' instead of ' +
+          chalk.yellow('tn ' + cmd) +
+          '\n'
+      );
     }
 
-    var tray = kitchen.cook(args);
+    const tray = kitchen.cook(args);
 
     args = tray ? tray.dinner : args;
 
-    var opts = {
-      stdio: 'inherit'
+    const opts = {
+      stdio: 'inherit',
     };
-    
+
     if (process.argv.indexOf('--prefer-appc') !== -1) {
-        opts.preferAppc = true;
-    }
-    else if (process.argv.indexOf('--prefer-ti') !== -1) {
-        opts.preferAppc = false;
-    }
-    else {
+      opts.preferAppc = true;
+    } else if (process.argv.indexOf('--prefer-ti') !== -1) {
+      opts.preferAppc = false;
+    } else {
       // try to detect if project is platform
       try {
-
-        var tiapp = fs.readFileSync(path.join(process.cwd(), 'tiapp.xml'), {
-          encoding: 'utf-8'
+        const tiapp = fs.readFileSync(path.join(process.cwd(), 'tiapp.xml'), {
+          encoding: 'utf-8',
         });
 
         // platform
         if (tiapp.indexOf('appc-app-id') !== -1) {
           opts.preferAppc = true;
         }
-
-      } catch (e) {}
+      } catch (_) {
+        // Silently ignore errors when reading tiapp.xml
+      }
     }
 
     // Show what TiNy made (only for build and create, not to mess with JSON output)
-    console.log('TiNy'.cyan.bold + ' cooked: ' + ('[appc] ti ' + utils.join(args)).yellow + '\n');
+    console.log(
+      chalk.cyan.bold('TiNy') + ' cooked: ' + chalk.yellow('[appc] ti ' + utils.join(args)) + '\n'
+    );
 
-    var eat = function () {
+    const eat = function () {
       compat.ti(args, opts);
     };
 
@@ -156,45 +160,98 @@ else if (cmd === '-v' || cmd === '--version' || cmd === 'version') {
 
 // help
 function displayHelp() {
-
   displayBanner();
 
   console.log('Commands:');
   console.log();
-  console.log('  *'.cyan + '\t\t\t\t' + 'cook recipes for ' + '[appc] ti build'.yellow + '.');
+  console.log(
+    '  ' +
+      chalk.cyan('*') +
+      '\t\t\t\t' +
+      'cook recipes for ' +
+      chalk.yellow('[appc] ti build') +
+      '.'
+  );
   console.log();
-  console.log('  list, recipes'.cyan + '\t\t\t' + 'lists all recipes in the book.');
+  console.log('  ' + chalk.cyan('list, recipes') + '\t\t\t' + 'lists all recipes in the book.');
   console.log();
-  console.log('  Add ' + 'project'.yellow + ' before the next commands to use ' + 'tn.json'.yellow + ' in current dir.');
+  console.log(
+    '  Add ' +
+      chalk.yellow('project') +
+      ' before the next commands to use ' +
+      chalk.yellow('tn.json') +
+      ' in current dir.'
+  );
   console.log();
-  console.log('  [project] save <name> *'.cyan + '\t' + 'save a recipe, possibly overriding a built-in.');
-  console.log('  [project] rename <old> <new>'.cyan + '\t' + 'renames a recipe.');
-  console.log('  [project] remove <name>'.cyan + '\t' + 'removes a recipe, possibly restoring an overridden built-in');
-  console.log('  [project] reset'.cyan + '\t\t' + 'removes all custom recipes, restoring the built-in');
+  console.log(
+    '  ' +
+      chalk.cyan('[project] save <name> *') +
+      '\t' +
+      'save a recipe, possibly overriding a built-in.'
+  );
+  console.log('  ' + chalk.cyan('[project] rename <old> <new>') + '\t' + 'renames a recipe.');
+  console.log(
+    '  ' +
+      chalk.cyan('[project] remove <name>') +
+      '\t' +
+      'removes a recipe, possibly restoring an overridden built-in'
+  );
+  console.log(
+    '  ' +
+      chalk.cyan('[project] reset') +
+      '\t\t' +
+      'removes all custom recipes, restoring the built-in'
+  );
   console.log();
-  console.log('  generate'.cyan + '\t\t\t' + 'generates simulators/device user-recipes (' + 'tn iphone6plus'.yellow + ')');
+  console.log(
+    '  ' +
+      chalk.cyan('generate') +
+      '\t\t\t' +
+      'generates simulators/device user-recipes (' +
+      chalk.yellow('tn iphone6plus') +
+      ')'
+  );
   console.log();
-  console.log('  uninstall'.cyan + '\t\t\t' + 'uninstalls the old 2.x Titanium CLI hook');
+  console.log(
+    '  ' + chalk.cyan('uninstall') + '\t\t\t' + 'uninstalls the old 2.x Titanium CLI hook'
+  );
   console.log();
-  console.log('  -h, --help, help'.cyan + '\t\t' + 'displays help');
-  console.log('  -v, --version, version'.cyan + '\t' + 'displays the current version');
-  console.log('  --verbose'.cyan + '\t\t\t' + 'shows what\'s cooking and confirm or save the recipe');
-  console.log('  --prefer-appc'.cyan + '\t\t\t' + 'forces TiNy to run the recipe with $ appc [...]');
-  console.log('  --prefer-ti'.cyan + '\t\t\t' + 'forces TiNy to run the recipe with $ ti [...]');
+  console.log('  ' + chalk.cyan('-h, --help, help') + '\t\t' + 'displays help');
+  console.log('  ' + chalk.cyan('-v, --version, version') + '\t' + 'displays the current version');
+  console.log(
+    '  ' +
+      chalk.cyan('--verbose') +
+      '\t\t\t' +
+      "shows what's cooking and confirm or save the recipe"
+  );
+  console.log(
+    '  ' +
+      chalk.cyan('--prefer-appc') +
+      '\t\t\t' +
+      'forces TiNy to run the recipe with $ appc [...]'
+  );
+  console.log(
+    '  ' + chalk.cyan('--prefer-ti') + '\t\t\t' + 'forces TiNy to run the recipe with $ ti [...]'
+  );
   console.log();
 }
 
 function displayBanner(doUpdate) {
-
   if (doUpdate !== false) {
-    require('update-notifier')({
-      packageName: pkg.name,
-      packageVersion: pkg.version
+    // Use modern update-notifier v7+ API with proper CommonJS import
+    const { default: updateNotifier } = require('update-notifier');
+    const notifier = updateNotifier({
+      pkg: pkg,
+      updateCheckInterval: 1000 * 60 * 60 * 24, // Check once per day
+    });
+    notifier.notify({
+      defer: false,
+      isGlobal: true,
     });
   }
 
   // display banner
-  console.log('TiNy'.cyan.bold + ', version ' + pkg.version);
+  console.log(chalk.cyan.bold('TiNy') + ', version ' + pkg.version);
   console.log('Copyright (c) 2016-2021, Jason Kneen. All Rights Reserved.');
   console.log();
 }

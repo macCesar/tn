@@ -1,9 +1,6 @@
 {
 	"android": ["--platform", "android"],
-	"blackberry": ["--platform", "blackberry"],
 	"ios": ["--platform", "ios"],
-	"mobileweb": ["--platform", "mobileweb"],
-	"tizen": ["--platform", "tizen"],
 
 	"ipad": ["--device-family", "ipad"],
 	"iphone": ["--device-family", "iphone"],
@@ -17,8 +14,6 @@
 	"playstore": ["--android", "--target", "dist-playstore"],
 	"play": ["--playstore"],
 	"ps": ["--playstore"],
-	"distribute": ["--blackberry", "--target", "distribute"],
-	"dist": ["--distribute"],
 	"adhoc": ["--ios", "--target", "dist-adhoc"],
 	"ah": ["--adhoc"],
 	"emulator": ["--target", "emulator"],
@@ -31,10 +26,10 @@
 
 	"desktop": ["-output-dir", "~/Desktop"],
 
-	"ip7": ["--sim-version", "7.1", "--sim-type", "iphone"],
-	"ip6": ["--sim-version", "6.1", "--sim-type", "iphone"],
-	"ipad7": ["--sim-version", "7.1", "--sim-type", "ipad"],
-	"ipad6": ["--sim-version", "6.1", "--sim-type", "ipad"],
+	"ip15": ["--sim-version", "17.0", "--sim-type", "iphone"],
+	"ip16": ["--sim-version", "18.0", "--sim-type", "iphone"],
+	"ipad15": ["--sim-version", "17.0", "--sim-type", "ipad"],
+	"ipad16": ["--sim-version", "18.0", "--sim-type", "ipad"],
 
 	"key-password": ["--key-password", "%s", "--key-password", "%s", "--platform", "android"],
 	"android-sdk": ["--android-sdk", "%s", "--platform", "android"],
@@ -43,11 +38,6 @@
 	"alias": ["--alias", "%s", "--platform", "android"],
 	"store-password": ["--store-password", "%s", "--platform", "android"],
 	"avd-skin": ["--avd-skin", "%s", "--platform", "android"],
-	"ip-address": ["--ip-address", "%s", "--platform", "blackberry"],
-	"debug-token": ["--debug-token", "%s", "--platform", "blackberry"],
-	"keystore-password": ["--keystore-password", "%s", "--platform", "blackberry"],
-	"ndk": ["--ndk", "%s", "--platform", "blackberry"],
-	"password": ["--password", "%s", "--platform", "blackberry"],
 	"force-copy": ["--force-copy", "--platform", "ios"],
 	"force-copy-all": ["--force-copy-all", "--platform", "ios"],
 	"retina": ["--retina", "--platform", "ios"],

@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm link:*)",
+      "Bash(tn:*)",
+      "Bash(npm rebuild:*)",
+      "Bash(node:*)",
+      "Bash(npm install)",
+      "WebSearch",
+      "Bash(npm ls:*)",
+      "Bash(npm outdated)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(npm audit:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run format:check:*)",
+      "Bash(npm run format:*)",
+      "Bash(npm version:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
