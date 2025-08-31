@@ -2,7 +2,7 @@
 
 TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that allows you to build iOS and Android apps using fewer keystrokes. It has built-in recipes for common build configurations, and allows you to compose and save your own custom recipes.
 
-> **UPDATE:** Version 5.x is fully modernized for 2025 with security updates, Node.js 18+ support, and support only for current platforms (iOS & Android).
+**Version 5.0.0** is fully modernized for 2025 with enhanced security, Node.js 18+ support, modern dependencies, and focuses exclusively on current mobile platforms (iOS & Android).
 
 ## Quick Start [![npm](http://img.shields.io/npm/v/tn.png)](https://www.npmjs.org/package/tn)
 
@@ -14,7 +14,9 @@ TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that al
 
    **Requirements:**
    - Node.js 18+ (recommended: Node.js 22+)
-   - Titanium SDK installed and configured
+   - Titanium SDK or Appcelerator CLI installed and configured
+   - iOS Simulator (for iOS development)
+   - Android SDK and emulators (for Android development)
 
 2. If for some reason uninstalling the 2.x hook failed, use the TiNY CLI to do so:
 
@@ -28,17 +30,17 @@ TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that al
    tn generate
    ```
 
-4. Build a project for iPhone 6 Simulator using the generated recipe:
+4. Build a project using generated device recipes:
 
    ```
-   tn iphone-6
-   tn iphone-6 --another-recipe
+   tn iphone-16-pro
+   tn pixel-8-pro-api-34 --another-recipe
    ```
 
-   - Notice that since 3.0 is no longer a hook and you ned `tn` instead of `ti`.
-   - Notice that since 4.0 you no longer need `tn r` or `tn b`, just use `tn`.
-   - Only the first recipe after `tn` does not need to start with `--`.
-   - If the recipes does end up giving a command as first arg, it will default to `build`
+   - TiNy is a CLI wrapper that executes `ti build` or `appc run` commands
+   - The first recipe after `tn` does not need to start with `--`
+   - Multiple recipes can be combined in a single command
+   - All commands default to `build` operation
 
 5. Compose a custom recipes mixing others (`--ah`) and an option value (`%s`):
 
@@ -71,10 +73,13 @@ Most recipes are flags, but a receipe can also be an option. If a recipe is foll
 
 ### Built-in recipes
 
-These are the current built-in recipes. If you have handy custom recipes you think everybody should have, please send a PR or open a ticket to have them added to the built-ins.
+TiNy includes comprehensive built-in recipes for modern mobile development. All recipes support the current Titanium SDK platforms and device types.
 
-- Don't forget that since 2.0 recipes are options and start with `--`.
-- Only the first recipe does not need to start with `--`.
+**Recipe Usage:**
+
+- Recipes are command-line flags that expand to full Titanium CLI arguments
+- When used as the first argument, recipes don't need the `--` prefix
+- Recipes can be combined and chained for complex build configurations
 
 | name              | recipe                                                 |
 | ----------------- | ------------------------------------------------------ |
@@ -143,10 +148,10 @@ tn reset                     # deletes the ~/.tn.json file
 You can generate user recipes for all connected devices, emulators and simulators by running `tn generate`. This will automatically create new recipes like:
 
 ```
-  iphone-15-pro: --platform ios --target simulator --device-id 2592EB13-534C-4E05-8D58-110D0261BDE3
-  iphone-16-plus: --platform ios --target simulator --device-id 2AE900F4-4349-4AD9-9AC4-CFD881BD5877
-  iphone-jason: --platform ios --target device --device-id daf492502fffe744842280370ed6dcc740eda657
-  pixel-8-pro-api-34: --platform android --target emulator --device-id "Pixel 8 Pro - API 34"
+  iphone-16-pro: --platform ios --target simulator --device-id 846AD047-0AE2-4778-A4B0-C28206B9BDBB
+  iphone-16-pro-max: --platform ios --target simulator --device-id 44AB80FA-A529-47F9-9C53-05DA319D7C6D
+  ipad-air-13-inch-m3: --platform ios --target simulator --device-id CE9F76E4-FF32-4E99-9005-71F69BDE01C1
+  pixel-8-pro-api-34: --platform android --target emulator --device-id "Pixel 8 Pro API 34"
 ```
 
 #### Project recipes
@@ -166,7 +171,61 @@ Any recipe can be used as a command as well. Like the Quick Start shows you can 
 
 ### Verbose mode
 
-If you want to know exactly what TiNy is doing, e.g. when you're composing a new recipe, you can enable verbose-mode by passing `--verbose` as one of the arguments. Apart from showing how TiNy cooks the end-result, it will also pause before actually executing it, asking if you want to save it as a recipe, just run it or exit.
+Enable verbose mode to see exactly how TiNy processes your recipes:
+
+```bash
+tn ios --verbose
+tn iphone-16-pro --distribution-name "My Company" --verbose
+```
+
+Verbose mode shows:
+
+- Recipe expansion step-by-step
+- Duplicate option resolution
+- Final command that will be executed
+- Interactive prompts to save, execute, or exit
+
+## Common Usage Examples
+
+### iOS Development
+
+```bash
+# Build for iOS simulator
+tn ios
+tn iphone-16-pro
+
+# Build for App Store distribution
+tn appstore --distribution-name "Your Company"
+
+# Build with specific provisioning profile
+tn ios --pp-uuid "37304C9F-B2E0-490A-9800-0448A33BECE9"
+```
+
+### Android Development
+
+```bash
+# Build for Android emulator
+tn android
+tn pixel-8-pro-api-34
+
+# Build for Play Store distribution
+tn playstore --keystore path/to/keystore --alias myalias
+
+# Build with specific Android SDK
+tn android --android-sdk /path/to/android/sdk
+```
+
+### Custom Workflows
+
+```bash
+# Create and use custom recipes
+tn save my-debug --ios --simulator --device-family universal
+tn my-debug
+
+# Project-specific recipes
+tn project save release --playstore --keystore ./android/release.keystore
+tn release
+```
 
 ## Other features
 
@@ -178,27 +237,48 @@ TiNy will convert abbreviations (`-T`) to their full names (`--target`). It need
 
 TiNy will resolve any duplicate options and flags in order of appearance.
 
-## Roadmap
+## Features
 
-- Restore some of the smarts lost in the 2.0 rewrite.
-- Add more built-in recipes.
+### Modern Architecture (v5.0.0)
+
+- **Node.js 18+ Support**: Fully compatible with modern Node.js versions
+- **Enhanced Security**: Updated all dependencies to latest secure versions
+- **Modern Dependencies**: Uses lodash, chalk, @inquirer/prompts for better performance
+- **Code Quality**: ESLint 8, Prettier formatting, comprehensive testing setup
+
+### Device Management
+
+- **Automatic Discovery**: `tn generate` detects all connected iOS simulators and Android emulators
+- **Current Devices**: Supports iPhone 16 series, iPad Air M3, iPad Pro M4, latest Android emulators
+- **Real Device Support**: Works with physical iOS and Android devices
+
+### Recipe System
+
+- **Built-in Recipes**: 50+ pre-configured recipes for common build scenarios
+- **Custom Recipes**: Save, edit, and share your own recipe configurations
+- **Project Recipes**: Per-project recipe files for team collaboration
+- **Recipe Chaining**: Combine multiple recipes in a single command
+
+### Developer Experience
+
+- **Interactive Prompts**: Modern CLI prompts for recipe management and execution
+- **Verbose Mode**: Detailed output showing recipe expansion and build process
+- **Safety Features**: Protection against accidental configuration deletion
+- **Platform Detection**: Automatic Appcelerator vs Titanium CLI detection
 
 ## Changelog
 
-- 4.2.1: Fixes issue generating certain simulators with special characters in their names
-- 4.2.0: Adds --prefer-appc and --prefer-ti to override automatic detection to use appc or ti CLI.
-- 4.0.0: Removed the need to use `tn r` or `tn b` thanks to [appc-compat](https://npmjs.com/appc-compat)
-- 3.0.0: Reverted TiNy from hook back to wrapper, supporting both `ti build` and `appc run`.
-- 2.3.0: Fixes for TiNy not to mess when run via Studio or AppC CLI
-- 2.2.0: Adds generating device/emulator/simulator recipes (`tn generate`).
-- 2.1.0: Re-introduces command recipes (and fixes `postinstall` for `npm link`).
-- 2.0.0: Rewrite using traditional flags/options format for recipes.
-- 1.0.0: Rewrite dropping support for `T=emulator` and `T:emulator` notations.
-- 0.1.0: Original version.
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history and breaking changes.
 
 ## Bugs
 
-When you find issues, please [report](https://github.com/jasonkneen/tn/issues) them. Be sure to include _all_ of the output from the gittio command that didn't work as expected. Also please check if there's not already in issue for it.
+When you find issues, please [report](https://github.com/jasonkneen/tn/issues) them. Be sure to include:
+
+- Complete command output
+- Your environment details (Node.js version, OS, Titanium SDK version)
+- Steps to reproduce the issue
+
+Check existing issues first to avoid duplicates.
 
 ## License
 
