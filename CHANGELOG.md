@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **SECURITY:** Replaced vulnerable `colors@1.4.0` with secure `chalk@4.1.2`
 - **BREAKING:** Updated `fields@0.1.24` to modern `@inquirer/prompts@7.8.4`
+- **BREAKING:** Removed legacy Appcelerator CLI support - uses Titanium CLI (`ti`) exclusively
 - **FEATURE:** Updated `update-notifier@0.6.0` to `7.3.1` with modern API
 - **COMPATIBILITY:** Updated Node.js engine requirement from `>=0.8` to `>=18`
 

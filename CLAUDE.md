@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-TiNy is a CLI wrapper for Appcelerator and Titanium build commands that provides "recipe" shortcuts to reduce keystrokes. It's a Node.js CLI tool that processes arguments and transforms them into full Titanium/Appcelerator CLI commands.
+TiNy is a CLI wrapper for Titanium SDK build commands that provides "recipe" shortcuts to reduce keystrokes. It's a Node.js CLI tool that processes arguments and transforms them into full Titanium CLI (`ti`) commands. The project focuses exclusively on modern Titanium SDK development under TiDev, Inc.
 
 ## Common Commands
 
@@ -43,7 +43,7 @@ Recipes can be:
 
 ### Key Dependencies
 
-- **`appc-compat`**: Handles automatic detection and execution of `appc` vs `ti` CLI
+- **`appc-compat`**: Handles Titanium CLI (`ti`) execution
 - **`fields`**: Interactive CLI prompts and confirmation dialogs
 - **`underscore`**: Utility functions for array/object manipulation
 - **`colors`**: Terminal color output
@@ -54,7 +54,7 @@ Recipes can be:
 1. Parse command line arguments in `cli.js`
 2. Pass to `kitchen.cook()` for recipe processing
 3. Transform arguments using recipe definitions
-4. Execute via `appc-compat.ti()` with processed arguments
+4. Execute via `appc-compat.ti()` with processed arguments using Titanium CLI (`ti`)
 
 ## Development Notes
 

@@ -118,31 +118,12 @@ else if (cmd === '-v' || cmd === '--version' || cmd === 'version') {
 
     const opts = {
       stdio: 'inherit',
+      preferAppc: false, // Always use Titanium CLI (ti)
     };
-
-    if (process.argv.indexOf('--prefer-appc') !== -1) {
-      opts.preferAppc = true;
-    } else if (process.argv.indexOf('--prefer-ti') !== -1) {
-      opts.preferAppc = false;
-    } else {
-      // try to detect if project is platform
-      try {
-        const tiapp = fs.readFileSync(path.join(process.cwd(), 'tiapp.xml'), {
-          encoding: 'utf-8',
-        });
-
-        // platform
-        if (tiapp.indexOf('appc-app-id') !== -1) {
-          opts.preferAppc = true;
-        }
-      } catch (_) {
-        // Silently ignore errors when reading tiapp.xml
-      }
-    }
 
     // Show what TiNy made (only for build and create, not to mess with JSON output)
     console.log(
-      chalk.cyan.bold('TiNy') + ' cooked: ' + chalk.yellow('[appc] ti ' + utils.join(args)) + '\n'
+      chalk.cyan.bold('TiNy') + ' cooked: ' + chalk.yellow('ti ' + utils.join(args)) + '\n'
     );
 
     const eat = function () {
@@ -165,12 +146,7 @@ function displayHelp() {
   console.log('Commands:');
   console.log();
   console.log(
-    '  ' +
-      chalk.cyan('*') +
-      '\t\t\t\t' +
-      'cook recipes for ' +
-      chalk.yellow('[appc] ti build') +
-      '.'
+    '  ' + chalk.cyan('*') + '\t\t\t\t' + 'cook recipes for ' + chalk.yellow('ti build') + '.'
   );
   console.log();
   console.log('  ' + chalk.cyan('list, recipes') + '\t\t\t' + 'lists all recipes in the book.');
@@ -223,15 +199,6 @@ function displayHelp() {
       chalk.cyan('--verbose') +
       '\t\t\t' +
       "shows what's cooking and confirm or save the recipe"
-  );
-  console.log(
-    '  ' +
-      chalk.cyan('--prefer-appc') +
-      '\t\t\t' +
-      'forces TiNy to run the recipe with $ appc [...]'
-  );
-  console.log(
-    '  ' + chalk.cyan('--prefer-ti') + '\t\t\t' + 'forces TiNy to run the recipe with $ ti [...]'
   );
   console.log();
 }

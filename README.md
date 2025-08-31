@@ -1,4 +1,4 @@
-# TiNy CLI [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/)
+# TiNy CLI [![Titanium](https://tidev.io/img/tilogo.png)](https://titaniumsdk.com)
 
 TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that allows you to build iOS and Android apps using fewer keystrokes. It has built-in recipes for common build configurations, and allows you to compose and save your own custom recipes.
 
@@ -14,7 +14,7 @@ TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that al
 
    **Requirements:**
    - Node.js 18+ (recommended: Node.js 22+)
-   - Titanium SDK or Appcelerator CLI installed and configured
+   - Titanium SDK installed and configured
    - iOS Simulator (for iOS development)
    - Android SDK and emulators (for Android development)
 
@@ -37,7 +37,7 @@ TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that al
    tn pixel-8-pro-api-34 --another-recipe
    ```
 
-   - TiNy is a CLI wrapper that executes `ti build` or `appc run` commands
+   - TiNy is a CLI wrapper that executes `ti build` commands
    - The first recipe after `tn` does not need to start with `--`
    - Multiple recipes can be combined in a single command
    - All commands default to `build` operation
@@ -264,7 +264,7 @@ TiNy will resolve any duplicate options and flags in order of appearance.
 - **Interactive Prompts**: Modern CLI prompts for recipe management and execution
 - **Verbose Mode**: Detailed output showing recipe expansion and build process
 - **Safety Features**: Protection against accidental configuration deletion
-- **Platform Detection**: Automatic Appcelerator vs Titanium CLI detection
+- **Modern CLI**: Uses Titanium SDK CLI (`ti`) exclusively
 
 ## Changelog
 
