@@ -13,8 +13,9 @@ TiNy is a modern CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that al
    ```
 
    **Requirements:**
-   - Node.js 18+ (recommended: Node.js 22+)
-   - Titanium SDK installed and configured
+   - Node.js 18+ (Titanium CLI requires Node.js 20.18.1+)
+   - Titanium CLI installed: `npm install -g titanium`
+   - Titanium SDK: `ti sdk install latest`
    - iOS Simulator (for iOS development)
    - Android SDK and emulators (for Android development)
 

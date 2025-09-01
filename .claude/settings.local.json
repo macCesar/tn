@@ -18,7 +18,8 @@
       "Bash(npm version:*)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm uninstall:*)"
     ],
     "deny": [],
     "ask": []

@@ -2,10 +2,7 @@
 
 'use strict';
 
-const fs = require('fs'),
-  path = require('path');
-
-const compat = require('appc-compat');
+const { spawn } = require('child_process');
 const chalk = require('chalk');
 
 const pkg = require('../package.json'),
@@ -127,7 +124,8 @@ else if (cmd === '-v' || cmd === '--version' || cmd === 'version') {
     );
 
     const eat = function () {
-      compat.ti(args, opts);
+      // Execute ti command directly
+      spawn('ti', args, opts);
     };
 
     // verbose prompt
@@ -198,7 +196,7 @@ function displayHelp() {
     '  ' +
       chalk.cyan('--verbose') +
       '\t\t\t' +
-      "shows what's cooking and confirm or save the recipe"
+      'shows what\'s cooking and confirm or save the recipe'
   );
   console.log();
 }

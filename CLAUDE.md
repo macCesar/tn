@@ -43,18 +43,18 @@ Recipes can be:
 
 ### Key Dependencies
 
-- **`appc-compat`**: Handles Titanium CLI (`ti`) execution
-- **`fields`**: Interactive CLI prompts and confirmation dialogs
-- **`underscore`**: Utility functions for array/object manipulation
-- **`colors`**: Terminal color output
-- **`update-notifier`**: Check for package updates
+- **`child_process.spawn`**: Direct execution of Titanium CLI (`ti`) commands
+- **`@inquirer/prompts`**: Modern interactive CLI prompts and confirmation dialogs
+- **`lodash`**: Utility functions for array/object manipulation
+- **`chalk`**: Terminal color output with clean API
+- **`update-notifier`**: Check for package updates (v7+)
 
 ### Processing Flow
 
 1. Parse command line arguments in `cli.js`
 2. Pass to `kitchen.cook()` for recipe processing
 3. Transform arguments using recipe definitions
-4. Execute via `appc-compat.ti()` with processed arguments using Titanium CLI (`ti`)
+4. Execute via `child_process.spawn('ti', args)` with processed arguments
 
 ## Development Notes
 
