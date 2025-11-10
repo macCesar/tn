@@ -1,9 +1,7 @@
-var kitchen = require('./lib/kitchen');
+const kitchen = require('./lib/kitchen');
 
 exports.parse = function (args) {
-	var tray;
+  const tray = kitchen.cook(args);
 
-	tray = kitchen.cook(args);
-
-	return tray ? tray.dinner : args;
+  return tray ? tray.dinner : args;
 };
