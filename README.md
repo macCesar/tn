@@ -92,6 +92,8 @@ TiNy includes comprehensive built-in recipes for modern mobile development. All 
 | universal         | --device-family universal                              |
 | uni               | --universal                                            |
 | watch             | --ios --launch-watch-app                               |
+| mac               | --platform ios --target macos                          |
+| catalyst          | --mac                                                  |
 | appstore          | --ios --target dist-appstore                           |
 | as                | --appstore                                             |
 | playstore         | --android --target dist-playstore                      |

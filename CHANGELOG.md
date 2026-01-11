@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0] - 2025-01-10
+
+### Added
+
+- **macOS Support**: Added built-in recipes for building iOS apps for macOS using Mac Catalyst
+  - `mac`: Build for macOS (`--platform ios --target macos`)
+  - `catalyst`: Alias for `--mac`
+  - Requires Titanium SDK 13.1.0+ with macOS build support
+  - Works on Apple Silicon Macs running macOS apps via Catalyst
+
+### Usage Examples
+
+```bash
+# Build for macOS using Mac Catalyst
+tn mac
+
+# Using the catalyst alias
+tn catalyst
+
+# Combine with other recipes
+tn mac --verbose
+```
+
 ## [5.0.0] - 2025-08-31
 
 ### 🚀 Major Updates
