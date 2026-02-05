@@ -96,6 +96,7 @@ TiNy includes comprehensive built-in recipes for modern mobile development. All 
 | catalyst          | --mac                                                  |
 | appstore          | --ios --target dist-appstore                           |
 | as                | --appstore                                             |
+| macstore          | --ios --target dist-macappstore                        |
 | playstore         | --android --target dist-playstore                      |
 | play              | --playstore                                            |
 | ps                | --playstore                                            |
