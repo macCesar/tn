@@ -92,8 +92,11 @@ TiNy includes comprehensive built-in recipes for modern mobile development. All 
 | universal         | --device-family universal                              |
 | uni               | --universal                                            |
 | watch             | --ios --launch-watch-app                               |
+| mac               | --platform ios --target macos                          |
+| catalyst          | --mac                                                  |
 | appstore          | --ios --target dist-appstore                           |
 | as                | --appstore                                             |
+| macstore          | --ios --target dist-macappstore                        |
 | playstore         | --android --target dist-playstore                      |
 | play              | --playstore                                            |
 | ps                | --playstore                                            |
@@ -107,23 +110,16 @@ TiNy includes comprehensive built-in recipes for modern mobile development. All 
 | ioses             | --ios --device --device-id all                         |
 | droid             | --android --device                                     |
 | desktop           | -output-dir ~/Desktop                                  |
-| ip17              | --sim-version 17.0 --sim-type iphone                   |
-| ip18              | --sim-version 18.0 --sim-type iphone                   |
-| ipad17            | --sim-version 17.0 --sim-type ipad                     |
-| ipad18            | --sim-version 18.0 --sim-type ipad                     |
+| ip18              | --sim-version 18.6 --sim-type iphone                   |
+| ip26              | --sim-version 26.1 --sim-type iphone                   |
+| ipad18            | --sim-version 18.6 --sim-type ipad                     |
+| ipad26            | --sim-version 26.1 --sim-type ipad                     |
 | key-password      | --key-password %s --key-password %s --platform android |
 | android-sdk       | --android-sdk %s --platform android                    |
 | avd-abi           | --avd-abi %s --platform android                        |
 | keystore          | --keystore %s --platform android                       |
 | alias             | --alias %s --platform android                          |
 | store-password    | --store-password %s --platform android                 |
-| avd-skin          | --avd-skin %s --platform android                       |
-| force-copy        | --force-copy --platform ios                            |
-| force-copy-all    | --force-copy-all --platform ios                        |
-| retina            | --retina --platform ios                                |
-| sim-64bit         | --sim-64bit --platform ios                             |
-| sim-focus         | --sim-focus --platform ios                             |
-| tall              | --tall --retina --platform ios                         |
 | device-family     | --device-family %s --platform ios                      |
 | ios-version       | --ios-version %s --platform ios                        |
 | pp-uuid           | --pp-uuid %s --platform ios                            |

@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.0] - 2026-02-05
+
+### Added
+
+- **Mac App Store Distribution**: Added built-in recipe for building Mac Catalyst apps for Mac App Store
+  - `macstore`: Build for Mac App Store (`--ios --target dist-macappstore`)
+  - Requires **Titanium SDK 13.1.1.GA**+ with Mac App Store distribution support (officially included)
+  - Creates `.xcarchive` ready for upload via Xcode Organizer
+  - Automatically detects installed Mac App Store Distribution certificates
+  - No interactive prompts required when certificates are properly configured
+
+### Usage Examples
+
+```bash
+# Build for Mac App Store distribution
+tn macstore
+
+# Combine with other recipes
+tn macstore --verbose
+```
+
+### Compatibility
+
+This release complements the Mac Catalyst support introduced in v5.1.0 and requires the official Mac App Store distribution target (`dist-macappstore`) that was added to Titanium SDK 13.1.1.GA.
+
+## [5.1.0] - 2025-01-10
+
+### Added
+
+- **macOS Support**: Added built-in recipes for building iOS apps for macOS using Mac Catalyst
+  - `mac`: Build for macOS (`--platform ios --target macos`)
+  - `catalyst`: Alias for `--mac`
+  - Requires Titanium SDK 13.1.0+ with macOS build support
+  - Works on Apple Silicon Macs running macOS apps via Catalyst
+
+### Usage Examples
+
+```bash
+# Build for macOS using Mac Catalyst
+tn mac
+
+# Using the catalyst alias
+tn catalyst
+
+# Combine with other recipes
+tn mac --verbose
+```
+
 ## [5.0.0] - 2025-08-31
 
 ### 🚀 Major Updates
