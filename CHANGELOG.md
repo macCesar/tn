@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.0] - 2026-03-01
+
+### Added
+
+- `tn list` now groups recipes into 8 labeled categories: iPhone Simulators, iPad Simulators, Android Emulators, iOS Devices, Android Devices, Distribution, Aliases, and General. Within each group, built-in recipes appear before user recipes. The General group is visually sub-clustered by platform (Apple/iOS, Android, parametric, misc) using blank lines.
+- `tn generate` shows `[INFO] All recipes are up to date.` when no new recipes are found.
+
+### Fixed
+
+- `tn generate` no longer creates duplicate `-iosXXX` recipes on repeated runs. Two bugs caused it: the same UDID reported under multiple iOS versions by `ti info`, and simulators that only appear under an older iOS version gaining a new suffix on every subsequent run even when their UDID was unchanged.
+
+### Changed
+
+- `tn generate` output is compact: only newly saved recipes are printed, not every device `ti info` finds.
+- README recipe tables restructured to match the grouped `tn list` output. Aliases now have their own section. All parametric recipes include descriptions.
+
 ## [5.2.0] - 2026-02-05
 
 ### Added
