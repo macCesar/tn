@@ -118,20 +118,6 @@ The built-in recipes cover the most common build configurations. A few things wo
 | play      | --playstore                       |
 | ps        | --playstore                       |
 
-**iPhone Simulators**
-
-| name | recipe                               |
-| ---- | ------------------------------------ |
-| ip18 | --sim-version 18.6 --sim-type iphone |
-| ip26 | --sim-version 26.1 --sim-type iphone |
-
-**iPad Simulators**
-
-| name   | recipe                             |
-| ------ | ---------------------------------- |
-| ipad18 | --sim-version 18.6 --sim-type ipad |
-| ipad26 | --sim-version 26.1 --sim-type ipad |
-
 **iOS Devices**
 
 | name  | recipe                         |
