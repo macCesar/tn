@@ -70,7 +70,7 @@ Colors will show you which recipes are built-in, user and user-overrides.
 
 ### Option recipes
 
-Most recipes are flags, but a recipe can also be an option. If a recipe is followed by an argument value, TiNy assumes the recipe to be an option and replace any occurences of `%s` in the recipe with the value. See step 4 of the Quick Start for an example.
+Most recipes are flags, but a recipe can also be an option. If a recipe is followed by an argument value, TiNy assumes the recipe to be an option and replace any occurrences of `%s` in the recipe with the value. See step 4 of the Quick Start for an example.
 
 ### Built-in recipes
 
@@ -164,14 +164,14 @@ These recipes accept a value that replaces `%s` in the expanded command. Useful 
 
 **Parametric recipes (Android)**
 
-| name           | recipe                                                 | description                                                          |
-| -------------- | ------------------------------------------------------ | -------------------------------------------------------------------- |
-| alias          | --alias %s --platform android                          | Keystore entry alias (the name given when the key was created)       |
-| android-sdk    | --android-sdk %s --platform android                    | Override the path to the Android SDK installation                    |
-| avd-abi        | --avd-abi %s --platform android                        | ABI architecture of the emulator (e.g. `x86_64`, `arm64-v8a`)        |
-| key-password   | --key-password %s --key-password %s --platform android | Password for the signing key inside the keystore                     |
-| keystore       | --keystore %s --platform android                       | Path to the `.keystore` file used to sign the APK/AAB                |
-| store-password | --store-password %s --platform android                 | Password for the keystore file itself (distinct from `key-password`) |
+| name           | recipe                                 | description                                                          |
+| -------------- | -------------------------------------- | -------------------------------------------------------------------- |
+| alias          | --alias %s --platform android          | Keystore entry alias (the name given when the key was created)       |
+| android-sdk    | --android-sdk %s --platform android    | Override the path to the Android SDK installation                    |
+| avd-abi        | --avd-abi %s --platform android        | ABI architecture of the emulator (e.g. `x86_64`, `arm64-v8a`)        |
+| key-password   | --key-password %s --platform android   | Password for the signing key inside the keystore                     |
+| keystore       | --keystore %s --platform android       | Path to the `.keystore` file used to sign the APK/AAB                |
+| store-password | --store-password %s --platform android | Password for the keystore file itself (distinct from `key-password`) |
 
 ### Custom recipes
 
