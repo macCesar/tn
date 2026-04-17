@@ -2,7 +2,7 @@
 
 TiNy is a CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that lets you build iOS and Android apps with fewer keystrokes. It ships with built-in recipes for common build configurations and lets you compose and save your own.
 
-Version 5.0.0 requires Node.js 18+ and targets iOS and Android only.
+Version 5.3.0 requires Node.js 18+ and targets iOS and Android only.
 
 ## Quick Start [![npm](http://img.shields.io/npm/v/tn.png)](https://www.npmjs.org/package/tn)
 
