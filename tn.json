@@ -29,7 +29,7 @@
 
 	"desktop": ["-output-dir", "~/Desktop"],
 
-	"key-password": ["--key-password", "%s", "--key-password", "%s", "--platform", "android"],
+	"key-password": ["--key-password", "%s", "--platform", "android"],
 	"android-sdk": ["--android-sdk", "%s", "--platform", "android"],
 	"avd-abi": ["--avd-abi", "%s", "--platform", "android"],
 	"keystore": ["--keystore", "%s", "--platform", "android"],
