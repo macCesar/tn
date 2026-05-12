@@ -195,6 +195,8 @@ You can generate user recipes for all connected devices, emulators and simulator
   pixel-8-pro-api-34: --platform android --target emulator --device-id "Pixel 8 Pro API 34"
 ```
 
+If `tn generate` finds user recipes pointing to iOS simulators or Android emulators that are no longer installed (e.g. after uninstalling an iOS Simulator runtime in Xcode), it lists them and asks whether to remove them. Physical device recipes are never touched.
+
 #### Project recipes
 
 Project recipes override both user and built-in recipes. The are stored in the current working directory in a file called `tn.json`. To edit this file instead of the global user file add `project` before the `save`, `rename`, `remove` and `reset` commands:
