@@ -2,7 +2,7 @@
 
 TiNy is a CLI wrapper for [Titanium SDK](https://titaniumsdk.com) that lets you build iOS and Android apps with fewer keystrokes. It ships with built-in recipes for common build configurations and lets you compose and save your own.
 
-Version 5.3.0 requires Node.js 18+ and targets iOS and Android only.
+Version 5.4.0 requires Node.js 18+ and targets iOS and Android only.
 
 ## Quick Start [![npm](http://img.shields.io/npm/v/tn.png)](https://www.npmjs.org/package/tn)
 
@@ -196,6 +196,34 @@ You can generate user recipes for all connected devices, emulators and simulator
 ```
 
 If `tn generate` finds user recipes pointing to iOS simulators or Android emulators that are no longer installed (e.g. after uninstalling an iOS Simulator runtime in Xcode), it lists them and asks whether to remove them. Physical device recipes are never touched.
+
+##### Cleaning up simulators
+
+Xcode does not clean up after itself. Uninstall an iOS runtime and its simulators stay in `~/Library/Developer/CoreSimulator/Devices` forever: they still show up in `simctl list`, they can never be booted again, and they can easily take tens of gigabytes.
+
+`tn clean` deletes them:
+
+```bash
+tn clean                    # delete simulators whose runtime is gone
+tn clean --data             # erase contents and settings, keep the simulators
+tn clean --runtimes         # delete installed runtimes you pick from a list
+tn clean --data --runtimes  # flags combine
+```
+
+With no flags it only removes the unusable ones, which is always safe. Every operation lists what it found, shows how much disk space it would free, and asks before deleting anything — the prompt defaults to no.
+
+`--data` deletes the apps installed in each simulator and their data, keeping the simulators themselves. Booted simulators are skipped.
+
+`--runtimes` lets you pick which runtimes to delete, with their size and last use date shown, and warns you if you pick the newest one you have. Deleting a runtime makes its simulators unusable, so those are removed in the same run and any recipes left pointing at them are offered for removal.
+
+`tn generate` reports leftover simulators when it finds them, so you know they are there:
+
+```
+[WARN]  11 ghost simulators found — their runtime is no longer installed
+        Run  tn clean  to remove them and free up disk space.
+```
+
+Android emulators are not touched by `tn clean`.
 
 #### Project recipes
 
