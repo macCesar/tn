@@ -62,7 +62,7 @@ Recipes can be:
 
 - Linting is ESLint (`.eslintrc.js`), run with `npm run lint` / `npm run lint:fix`. A stale `.jshintrc` is still in the repo but nothing uses it.
 - Formatting is Prettier: `npm run format` / `npm run format:check`
-- Jest is configured (`npm test`) but no tests have been written yet
+- Tests are Jest (`npm test`), in `test/`. `test/generate.test.js` runs `tn generate` against a faked `ti info` and `simctl` with a temporary `~/.tn.json`
 - Uses CommonJS modules (`require`/`exports`)
 - Requires Node.js >=18 (see `engines` in `package.json`)
 - Main binary is executable via `./bin/cli.js`
