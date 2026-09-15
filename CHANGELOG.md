@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `tn generate` no longer saves a second recipe for a simulator that already has one. With two simulators of the same name, the second one is saved as `<name>-ios186`; once the first was deleted and its recipe pruned, the next run saved the plain name again, leaving two recipes launching the same simulator. The existing recipe is kept as it is.
+
 ## [5.4.0] - 2026-07-30
 
 ### Added
